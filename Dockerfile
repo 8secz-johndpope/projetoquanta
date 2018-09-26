@@ -5,7 +5,7 @@
 # npm i -g http-server
 # http-server -p 8000 --cors
 
-FROM node:alpine
+FROM node:alpine as builder
 
 RUN apk update && apk add --no-cache git 
 
@@ -21,10 +21,11 @@ ENV PAGE_TITLE="ReDoc"
 ENV PAGE_FAVICON="favicon.png"
 ENV SPEC_URL="http://petstore.swagger.io/v2/swagger.json"
 ENV PORT=80
-ENV REDOC_OPTIONS=
+ENV REDOC_OPTIONS=""
+ENV POSTMAN_URL=""
 
 # copy files to the nginx folder
-COPY --from=0 build/bundles /usr/share/nginx/html
+COPY --from=builder build/bundles /usr/share/nginx/html
 COPY config/docker/index.tpl.html /usr/share/nginx/html/index.html
 COPY demo/favicon.png /usr/share/nginx/html/
 COPY config/docker/nginx.conf /etc/nginx/

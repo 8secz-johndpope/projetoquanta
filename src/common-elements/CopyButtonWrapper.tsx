@@ -40,10 +40,10 @@ export class CopyButtonWrapper extends React.PureComponent<
     return (
       <span onClick={this.copy}>
         <Tooltip
-          title={ClipboardService.isSupported() ? 'Copied' : 'Not supported in your browser'}
+          title={ClipboardService.isSupported() ? 'Copiado' : 'Não suportado no seu navegador'}
           open={this.state.tooltipShown}
         >
-          Copy
+          Copiar
         </Tooltip>
       </span>
     );

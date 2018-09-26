@@ -59,7 +59,7 @@ export class Parameters extends React.PureComponent<ParametersProps> {
 function DropdownWithinHeader(props) {
   return (
     <UnderlinedHeader key="header">
-      Request Body schema: <DropdownOrLabel {...props} />
+      Corpo do esquema da requisição: <DropdownOrLabel {...props} />
     </UnderlinedHeader>
   );
 }

@@ -38,7 +38,7 @@ export class FieldDetails extends React.PureComponent<FieldProps> {
           )}
           {schema.title && <TypeTitle> ({schema.title}) </TypeTitle>}
           <ConstraintsView constraints={schema.constraints} />
-          {schema.nullable && <NullableLabel> Nullable </NullableLabel>}
+          {schema.nullable && <NullableLabel> Pode ser nulo </NullableLabel>}
           {schema.pattern && <PatternLabel>{schema.pattern}</PatternLabel>}
           {schema.isCircular && <RecursiveLabel> Recursive </RecursiveLabel>}
         </div>
@@ -47,9 +47,9 @@ export class FieldDetails extends React.PureComponent<FieldProps> {
             <Badge type="warning"> Deprecated </Badge>
           </div>
         )}
-        <FieldDetail label={'Default:'} value={schema.default} />
+        <FieldDetail label={'Padrão:'} value={schema.default} />
         {!renderDiscriminatorSwitch && <EnumValues type={schema.type} values={schema.enum} />}{' '}
-        {showExamples && <FieldDetail label={'Example:'} value={example} />}
+        {showExamples && <FieldDetail label={'Exemplo:'} value={example} />}
         <div>
           <Markdown dense={true} source={description} />
         </div>

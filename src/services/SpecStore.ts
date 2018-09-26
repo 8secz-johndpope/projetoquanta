@@ -19,9 +19,10 @@ export class SpecStore {
   constructor(
     spec: OpenAPISpec,
     specUrl: string | undefined,
+    postmanUrl: string | undefined,
     private options: RedocNormalizedOptions,
   ) {
-    this.parser = new OpenAPIParser(spec, specUrl, options);
+    this.parser = new OpenAPIParser(spec, specUrl, postmanUrl, options);
     this.info = new ApiInfoModel(this.parser);
     this.externalDocs = this.parser.spec.externalDocs;
     this.contentItems = MenuBuilder.buildStructure(this.parser, this.options);

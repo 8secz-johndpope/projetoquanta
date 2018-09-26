@@ -35,6 +35,7 @@ function parseOptionsFromElement(element: Element) {
 
 export function init(
   specOrSpecUrl: string | any,
+  postmanUrl: string | null,
   options: any = {},
   element: Element | null = querySelector('redoc'),
   callback?: (e?: Error) => void,
@@ -59,9 +60,10 @@ export function init(
         spec,
         onLoaded: callback,
         specUrl,
+        postmanUrl,
         options: { ...options, ...parseOptionsFromElement(element) },
       },
-      ['Loading...'],
+      ['Carregando...'],
     ),
     element,
   );
@@ -92,8 +94,9 @@ function autoInit() {
     return;
   }
   const specUrl = element.getAttribute('spec-url');
+  const postmanUrl = element.getAttribute('postman-url');
   if (specUrl) {
-    init(specUrl, {}, element);
+    init(specUrl,postmanUrl, {}, element);
   }
 }
 

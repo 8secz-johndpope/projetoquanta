@@ -1,14 +1,15 @@
 import { SECTION_ATTR } from '../services/MenuStore';
-import styled, { media, withProps } from '../styled-components';
+import styled, { /*media,*/ withProps } from '../styled-components';
 
 export const MiddlePanel = styled.div`
   width: calc(100% - ${props => props.theme.rightPanel.width});
   padding: 0 ${props => props.theme.spacing.unit * 8}px;
-
-  ${media.lessThan('medium')`
-    width: 100%;
-  `};
 `;
+//TODO Remove this because of Responsive menu BUG
+//${media.lessThan('medium')`
+//     width: 100%;
+//   `};
+
 
 export const Section = withProps<{ underlined?: boolean }>(
   styled.div.attrs({
@@ -39,11 +40,11 @@ export const RightPanel = styled.div`
   color: #fafbfc;
   background-color: ${props => props.theme.rightPanel.backgroundColor};
   padding: 0 ${props => props.theme.spacing.unit * 8}px;
-
-  ${media.lessThan('medium')`
-    width: 100%;
-  `};
 `;
+//TODO REMOVE THIS BECAUSE OF THE BUG
+//${media.greaterThan('medium')`
+//     width: 100%;
+//   `};
 
 export const DarkRightPanel = styled(RightPanel)`
   background-color: ${props => props.theme.rightPanel.backgroundColor};
@@ -53,8 +54,8 @@ export const Row = styled.div`
   display: flex;
   width: 100%;
   padding: 0;
-
-  ${media.lessThan('medium')`
-    flex-direction: column;
-  `};
 `;
+
+//${media.greaterThan('medium')`
+//     flex-direction: column;
+//   `};

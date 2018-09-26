@@ -14,6 +14,12 @@ export interface ParametersGroupProps {
 }
 
 export class ParametersGroup extends React.PureComponent<ParametersGroupProps, any> {
+
+  //TODO REFAZER ISTO DE UMA MANEIRA CORRETA
+  getChar(param: string){
+    return param.indexOf('header') == -1 ? 'a' : 'o'
+  }
+
   render() {
     const { place, parameters } = this.props;
     if (!parameters || !parameters.length) {
@@ -22,7 +28,7 @@ export class ParametersGroup extends React.PureComponent<ParametersGroupProps, a
 
     return (
       <div key={place}>
-        <UnderlinedHeader>{place} Parameters</UnderlinedHeader>
+        <UnderlinedHeader>Parâmetros d{this.getChar(place)} {place} </UnderlinedHeader>
         <PropertiesTable>
           <tbody>
             {mapWithLast(parameters, (field, isLast) => (

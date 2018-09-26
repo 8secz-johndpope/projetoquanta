@@ -17,7 +17,7 @@ export const DownloadButton = styled.a`
   color: ${props => props.theme.colors.primary.main};
   font-weight: normal;
   margin-left: 0.5em;
-  padding: 4px 8px 4px;
+  padding: 4px 10px 4px;
   display: inline-block;
   text-decoration: none;
   cursor: pointer;

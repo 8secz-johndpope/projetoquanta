@@ -23,7 +23,7 @@ export class ResponseSamples extends React.Component<ResponseSamplesProps> {
     return (
       (responses.length > 0 && (
         <div>
-          <RightPanelHeader> Response samples </RightPanelHeader>
+          <RightPanelHeader> Exemplos de respostas </RightPanelHeader>
 
           <Tabs defaultIndex={0}>
             <TabList>

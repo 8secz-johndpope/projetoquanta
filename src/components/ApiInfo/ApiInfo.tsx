@@ -1,8 +1,6 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
-
 import { AppStore } from '../../services/AppStore';
-
 import { MiddlePanel, Row, Section } from '../../common-elements/';
 import { Markdown } from '../Markdown/Markdown';
 import { StyledMarkdownBlock } from '../Markdown/styled.elements';
@@ -18,21 +16,45 @@ export interface ApiInfoProps {
   store: AppStore;
 }
 
+interface Links {
+  downloadSwaggerLink: string | undefined;
+  downloadPostmanLink: string | undefined;
+}
+
 @observer
-export class ApiInfo extends React.Component<ApiInfoProps> {
+export class ApiInfo extends React.Component<ApiInfoProps, Links> {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      downloadSwaggerLink : '',
+      downloadPostmanLink: ''
+    }
+  }
+
   handleDownloadClick = e => {
     if (!e.target.href) {
-      e.target.href = this.props.store.spec.info.downloadLink;
+      window.location.href = e.target.href;
     }
   };
+
+  componentWillMount(){
+    const { store } = this.props;
+    const { info } = store.spec;
+
+    Promise.all([info.downloadLink(), info.downloadPostmanLink()])
+      .then(e => {
+        this.setState({downloadPostmanLink: e[1], downloadSwaggerLink: e[0]});
+    });
+  }
 
   render() {
     const { store } = this.props;
     const { info, externalDocs } = store.spec;
     const hideDownloadButton = store.options.hideDownloadButton;
 
-    const downloadFilename = info.downloadFileName;
-    const downloadLink = info.downloadLink;
+    const downloadSwaggerFilename = info.downloadFileName;
+    const downloadPostmanFilename = info.downloadPostmanFileName;
 
     const license =
       (info.license && (
@@ -78,11 +100,22 @@ export class ApiInfo extends React.Component<ApiInfoProps> {
             </ApiHeader>
             {!hideDownloadButton && (
               <p>
-                Download OpenAPI specification:
+                Fazer download da especificação OpenAPI:
                 <DownloadButton
-                  download={downloadFilename}
+                  download={downloadSwaggerFilename}
                   target="_blank"
-                  href={downloadLink}
+                  href={this.state.downloadSwaggerLink}
+                  onClick={this.handleDownloadClick}
+                >
+                    Download
+                </DownloadButton>
+                <br/>
+                <br/>
+                Fazer download da coleção do Postman:
+                <DownloadButton
+                  download={downloadPostmanFilename}
+                  target="_blank"
+                  href={this.state.downloadPostmanLink}
                   onClick={this.handleDownloadClick}
                 >
                   Download

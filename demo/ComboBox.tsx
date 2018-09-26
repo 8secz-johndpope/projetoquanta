@@ -218,7 +218,7 @@ export default class ComboBox extends React.Component<ComboBoxProps, ComboBoxSta
           onBlur={this.handleBlur}
           onKeyDown={this.handleKeyPress}
         />
-        <Button onClick={this.handleTryItClick}> TRY IT </Button>
+        <Button onClick={this.handleTryItClick}> EXPERIMENTE </Button>
         {open && <DropDownList>{options.map(this.renderOption)}</DropDownList>}
       </ComboBoxWrap>
     );

@@ -34,11 +34,14 @@ export const ApiContentWrap = styled.div`
   position: relative;
   overflow: hidden;
   width: calc(100% - ${props => props.theme.menu.width});
-  ${media.lessThan('small')`
-    width: 100%;
-  `};
   contain: layout;
+  ${media.lessThan('small')`
+     width: 100%;
+   `};
 `;
+//TODO REMOVE THIS BECAUSE BUG ON RESPONSIVE
+
+
 
 export const BackgroundStub = styled.div`
   background: ${({ theme }) => theme.rightPanel.backgroundColor};
@@ -47,7 +50,11 @@ export const BackgroundStub = styled.div`
   bottom: 0;
   right: 0;
   width: calc((100% - ${({ theme }) => theme.menu.width}) * 0.4);
-  ${media.lessThan('medium')`
-    display: none;
-  `};
+  ${media.lessThan('small')`
+   width: ${props => props.theme.rightPanel.width};
+ `};
 `;
+//TODO REMOVE THIS BECAUSE BUG ON RESPONSIVE
+//${media.lessThan('medium')`
+ //   display: none;
+ // `};

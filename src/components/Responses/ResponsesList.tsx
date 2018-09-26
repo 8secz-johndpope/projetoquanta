@@ -25,7 +25,7 @@ export class ResponsesList extends React.PureComponent<ResponseListProps> {
 
     return (
       <div>
-        <ResponsesHeader> Responses </ResponsesHeader>
+        <ResponsesHeader> Respostas </ResponsesHeader>
         {responses.map(response => {
           return <ResponseView key={response.code} response={response} />;
         })}

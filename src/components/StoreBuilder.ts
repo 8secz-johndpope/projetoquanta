@@ -7,6 +7,7 @@ import { loadAndBundleSpec } from '../utils';
 
 export interface StoreBuilderProps {
   specUrl?: string;
+  postmanUrl?: string | null;
   spec?: object;
   store?: AppStore;
 
@@ -48,11 +49,11 @@ export class StoreBuilder extends Component<StoreBuilderProps, StoreBuilderState
   };
 
   @memoize
-  makeStore(spec, specUrl, options) {
+  makeStore(spec, specUrl, postmanUrl, options) {
     if (!spec) {
       return undefined;
     }
-    return new AppStore(spec, specUrl, options);
+    return new AppStore(spec, specUrl, postmanUrl, options);
   }
 
   componentDidMount() {
@@ -86,11 +87,11 @@ export class StoreBuilder extends Component<StoreBuilderProps, StoreBuilderState
       throw this.state.error;
     }
 
-    const { specUrl, options } = this.props;
+    const { specUrl, postmanUrl, options } = this.props;
     const { loading, resolvedSpec } = this.state;
     return this.props.children({
       loading,
-      store: this.makeStore(resolvedSpec, specUrl, options),
+      store: this.makeStore(resolvedSpec, specUrl, postmanUrl, options),
     });
   }
 }

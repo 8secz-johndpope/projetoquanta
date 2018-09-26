@@ -28,10 +28,11 @@ export interface StoreState {
 export async function createStore(
   spec: object,
   specUrl: string | undefined,
+  postmanUrl: string | undefined,
   options: RedocRawOptions = {},
 ) {
   const resolvedSpec = await loadAndBundleSpec(spec || specUrl);
-  return new AppStore(resolvedSpec, specUrl, options);
+  return new AppStore(resolvedSpec, specUrl,postmanUrl, options);
 }
 
 export class AppStore {
@@ -41,7 +42,7 @@ export class AppStore {
    */
   // TODO:
   static fromJS(state: StoreState): AppStore {
-    const inst = new AppStore(state.spec.data, state.spec.url, state.options, false);
+    const inst = new AppStore(state.spec.data, state.spec.url, undefined, state.options, false);
     inst.menu.activeItemIdx = state.menu.activeItemIdx || 0;
     inst.menu.activate(inst.menu.flatItems[inst.menu.activeItemIdx]);
     if (!inst.options.disableSearch) {
@@ -63,6 +64,7 @@ export class AppStore {
   constructor(
     spec: OpenAPISpec,
     specUrl?: string,
+    postmanUrl?: string,
     options: RedocRawOptions = {},
     createSearchIndex: boolean = true,
   ) {
@@ -73,7 +75,7 @@ export class AppStore {
     // update position statically based on hash (in case of SSR)
     MenuStore.updateOnHistory(history.currentId, this.scroll);
 
-    this.spec = new SpecStore(spec, specUrl, this.options);
+    this.spec = new SpecStore(spec, specUrl, postmanUrl, this.options);
     this.menu = new MenuStore(this.spec, this.scroll, history);
 
     if (!this.options.disableSearch) {

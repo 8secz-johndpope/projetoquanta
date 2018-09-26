@@ -73,6 +73,7 @@ class DemoApp extends React.Component<
   render() {
     const { specUrl, cors } = this.state;
     let proxiedUrl = specUrl;
+    let postmanUrl = 'https://raw.githubusercontent.com/dangerousplay/Trabalho/master/postman.zip';
     if (specUrl !== DEFAULT_SPEC) {
       proxiedUrl = cors
         ? '\\\\cors.apis.guru/' + urlResolve(window.location.href, specUrl)
@@ -104,7 +105,7 @@ class DemoApp extends React.Component<
             height="30px"
           />
         </Heading>
-        <RedocStandalone specUrl={proxiedUrl} options={{ scrollYOffset: 'nav' }} />
+        <RedocStandalone specUrl={proxiedUrl} postmanUrl={postmanUrl} options={{ scrollYOffset: 'nav' }} />
       </>
     );
   }

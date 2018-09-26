@@ -63,7 +63,7 @@ export function getOperationSummary(operation: OpenAPIOperation): string {
     operation.summary ||
     operation.operationId ||
     (operation.description && operation.description.substring(0, 50)) ||
-    '<no summary>'
+    'Sem sumário'
   );
 }
 

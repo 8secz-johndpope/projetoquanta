@@ -29,8 +29,8 @@ class Json extends React.PureComponent<JsonProps> {
     <JsonViewerWrap>
       <SampleControls>
         {renderCopyButton()}
-        <span onClick={this.expandAll}> Expand all </span>
-        <span onClick={this.collapseAll}> Collapse all </span>
+        <span onClick={this.expandAll}> Expandir todos </span>
+        <span onClick={this.collapseAll}> Contrair todos </span>
       </SampleControls>
       <PrismDiv
         className={this.props.className}

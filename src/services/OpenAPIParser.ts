@@ -39,6 +39,7 @@ class RefCounter {
  */
 export class OpenAPIParser {
   specUrl?: string;
+  postmanUrl?: string;
   spec: OpenAPISpec;
 
   private _refCounter: RefCounter = new RefCounter();
@@ -46,12 +47,14 @@ export class OpenAPIParser {
   constructor(
     spec: OpenAPISpec,
     specUrl?: string,
+    postmanUrl?: string,
     private options: RedocNormalizedOptions = new RedocNormalizedOptions({}),
   ) {
     this.validate(spec);
     this.preprocess(spec);
 
     this.spec = spec;
+    this.postmanUrl = postmanUrl;
 
     const href = IS_BROWSER ? window.location.href : '';
     if (typeof specUrl === 'string') {

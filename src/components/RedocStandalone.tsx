@@ -10,6 +10,7 @@ import { StoreBuilder } from './StoreBuilder';
 export interface RedocStandaloneProps {
   spec?: object;
   specUrl?: string;
+  postmanUrl?: string | null;
   options?: RedocRawOptions;
   onLoaded?: (e?: Error) => any;
 }
@@ -33,19 +34,27 @@ export class RedocStandalone extends React.PureComponent<RedocStandaloneProps> {
       }
       return null;
     },
+    postmanUrl: (props, _, componentName) => {
+      if (!props.spec && !props.specUrl) {
+        return new Error(
+          `One of props 'spec' or 'postmanUrl' was not specified in '${componentName}'.`,
+        );
+      }
+      return null;
+    },
     options: PropTypes.any,
     onLoaded: PropTypes.any,
   };
 
   render() {
-    const { spec, specUrl, options = {}, onLoaded } = this.props;
+    const { spec, specUrl,postmanUrl, options = {}, onLoaded } = this.props;
     const hideLoading = options.hideLoading !== undefined;
 
     const normalizedOpts = new RedocNormalizedOptions(options);
 
     return (
       <ErrorBoundary>
-        <StoreBuilder spec={spec} specUrl={specUrl} options={options} onLoaded={onLoaded}>
+        <StoreBuilder spec={spec} specUrl={specUrl} postmanUrl={postmanUrl} options={options} onLoaded={onLoaded}>
           {({ loading, store }) =>
             !loading ? (
               <Redoc store={store!} />
