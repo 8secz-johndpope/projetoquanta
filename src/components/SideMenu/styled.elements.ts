@@ -159,6 +159,7 @@ export const MenuItemTitle = withProps<{ width?: string }>(styled.span)`
   width: ${props => (props.width ? props.width : 'auto')};
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: bold;
 `;
 
 export const RedocAttribution = styled.div`

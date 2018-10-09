@@ -15,6 +15,7 @@ export const headerCommonMixin = level => css`
 export const H1 = styled.h1`
   ${headerCommonMixin(1)};
   color: ${props => props.theme.colors.primary.main};
+  font-weight: bold;
 
   ${extensionsHook('H1')};
 `;

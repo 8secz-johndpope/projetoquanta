@@ -116,7 +116,7 @@ export class SecurityRequirements extends React.PureComponent<SecurityRequiremen
     return (
       <Wrap>
         <AuthHeaderColumn>
-          <AuthHeader>Authorizations: </AuthHeader>
+          <AuthHeader>Autorização: </AuthHeader>
         </AuthHeaderColumn>
         <SecuritiesColumn>
           {securities.map((security, idx) => (
