@@ -153,13 +153,13 @@ export const MenuItemLabel = withProps<{
   }
 `;
 
-export const MenuItemTitle = withProps<{ width?: string }>(styled.span)`
+export const MenuItemTitle = withProps<{ width?: string, categoryMenu?: boolean }>(styled.span)`
   display: inline-block;
   vertical-align: middle;
   width: ${props => (props.width ? props.width : 'auto')};
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: bold;
+  ${props => (props.categoryMenu ? 'font-weight: bold;': '')}
 `;
 
 export const RedocAttribution = styled.div`
