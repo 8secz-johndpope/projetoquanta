@@ -1,8 +1,8 @@
-import * as React from "react";
-import {Redirect, Route, Switch} from "react-router";
-import {Redoc} from "./Redoc/Redoc";
-import {Login} from "./Login/login";
-
+// import * as React from "react";
+// import {Redirect, Route, Switch} from "react-router";
+// import {Redoc} from "./Redoc/Redoc";
+// import {Login} from "./Login/login";
+//
 // const PrivateRoute = ({ component: Login, ...rest})=>(
 //   {/*<Route*/}
 //     {/*{...rest}*/}
@@ -15,12 +15,12 @@ import {Login} from "./Login/login";
 //     {/*}*/}
 //   {/*/>*/}
 // );
-
-export default class RootRouter extends React.Component {
-  render(): React.ReactNode {
-    return (<Switch>
-      <Route exact path="/doc" component={Redoc}></Route>
-      <Route exact path="/login" component={Login}/>
-    </Switch>);
-  }
-}
+//
+// export default class RootRouter extends React.Component {
+//   render(): React.ReactNode {
+//     return (<Switch>
+//       <Route exact path="/doc" component={Redoc}></Route>
+//       <Route exact path="/login" component={Login}/>
+//     </Switch>);
+//   }
+// }
