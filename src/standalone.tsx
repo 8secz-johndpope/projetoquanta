@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { hydrate as hydrateComponent, render } from 'react-dom';
 
-import { Redoc, RedocStandalone } from './components/';
+import { Redoc } from './components/';
 import { AppStore, StoreState } from './services/AppStore';
 import { debugTime, debugTimeEnd } from './utils/debug';
 import { querySelector } from './utils/dom';
+import Routes from "./components/Routes";
 
 export { Redoc, AppStore } from '.';
 
@@ -55,7 +56,7 @@ export function init(
 
   render(
     React.createElement(
-      RedocStandalone,
+     Routes,
       {
         spec,
         onLoaded: callback,
@@ -89,6 +90,7 @@ export function hydrate(
  * autoinit ReDoc if <redoc> tag is found on the page with "spec-url" attr
  */
 function autoInit() {
+  console.log("autoInit()");
   const element = querySelector('redoc');
   if (!element) {
     return;

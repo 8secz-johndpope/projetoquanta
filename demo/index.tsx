@@ -2,8 +2,8 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import styled from 'styled-components';
 import { resolve as urlResolve } from 'url';
-import { RedocStandalone } from '../src';
 import ComboBox from './ComboBox';
+import Routes from "../src/components/Routes";
 
 const demos = [
   { value: 'https://api.apis.guru/v2/specs/instagram.com/1.0.0/swagger.yaml', label: 'Instagram' },
@@ -64,6 +64,7 @@ class DemoApp extends React.Component<
       cors,
     });
     window.history.pushState(
+
       undefined,
       '',
       updateQueryStringParameter(location.search, 'nocors', cors ? undefined : ''),
@@ -105,7 +106,7 @@ class DemoApp extends React.Component<
             height="30px"
           />
         </Heading>
-        <RedocStandalone specUrl={proxiedUrl} postmanUrl={postmanUrl} options={{ scrollYOffset: 'nav' }} />
+        <Routes specUrl={proxiedUrl} postmanUrl={postmanUrl} options={{ scrollYOffset: 'nav' }} />
       </>
     );
   }

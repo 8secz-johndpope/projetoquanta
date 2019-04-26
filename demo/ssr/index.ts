@@ -57,7 +57,7 @@ const server = http.createServer(async (request, response) => {
     response.end();
   } else {
     response.writeHead(404);
-    response.write('Not found');
+    response.write('Not found arquivo');
     response.end();
   }
 

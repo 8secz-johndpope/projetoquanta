@@ -10,6 +10,7 @@ info:
     url: 'http://unicredafinidade.com.br/admin/arquivos/images/logo-quanta.png'
     backgroundColor: '#FFFFFF'
     altText: Quanta previdência
+
 tags:
 - name: Acesso – Ambientes e URL
   description: >

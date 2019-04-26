@@ -3,15 +3,16 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 // import DevTools from 'mobx-react-devtools';
 
-import { Redoc, RedocProps } from '../../src/components/Redoc/Redoc';
+import { RedocProps } from '../../src/components/Redoc/Redoc';
 import { AppStore } from '../../src/services/AppStore';
 import { RedocRawOptions } from '../../src/services/RedocNormalizedOptions';
 import { loadAndBundleSpec } from '../../src/utils/loadAndBundleSpec';
+import Routes from "../../src/components/Routes";
 
 const renderRoot = (props: RedocProps) =>
   render(
     <AppContainer>
-      <Redoc {...props} />
+      <Routes {...props} />
     </AppContainer>,
     document.getElementById('example'),
   );
