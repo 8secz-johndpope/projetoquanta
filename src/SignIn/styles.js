@@ -40,9 +40,9 @@ export const Form = styled.form`
     }
   }
   button {
-    color: #fff;
+    color: #FFFFFF;
     font-size: 16px;
-    background: #fc6963;
+    background: #4CAF50;
     height: 56px;
     border: 0;
     border-radius: 5px;

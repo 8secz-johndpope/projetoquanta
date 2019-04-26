@@ -15,11 +15,17 @@ export interface RedocStandaloneProps {
   onLoaded?: (e?: Error) => any;
 }
 
+
+
+
+
 export class RedocStandalone extends React.PureComponent<RedocStandaloneProps> {
   static propTypes = {
     spec: (props, _, componentName) => {
       if (!props.spec && !props.specUrl) {
-        return new Error(
+        console.log(props.spec);
+        return  new Error(
+
           `One of props 'spec' or 'specUrl' was not specified in '${componentName}'.`,
         );
       }
@@ -28,6 +34,7 @@ export class RedocStandalone extends React.PureComponent<RedocStandaloneProps> {
 
     specUrl: (props, _, componentName) => {
       if (!props.spec && !props.specUrl) {
+
         return new Error(
           `One of props 'spec' or 'specUrl' was not specified in '${componentName}'.`,
         );
@@ -44,7 +51,9 @@ export class RedocStandalone extends React.PureComponent<RedocStandaloneProps> {
     },
     options: PropTypes.any,
     onLoaded: PropTypes.any,
+
   };
+
 
   render() {
     const { spec, specUrl,postmanUrl, options = {}, onLoaded } = this.props;

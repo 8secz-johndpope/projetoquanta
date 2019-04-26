@@ -1,8 +1,8 @@
 import * as React from "react";
 import { withRouter } from "react-router-dom";
 
-import api from "../services/api";
-import { login } from "../services/auth";
+// import api from "../services/api";
+// import { login } from "../services/auth";
 
 import { Form, Container } from "./styles";
 import {Component} from "react";
@@ -21,9 +21,17 @@ class SignIn extends Component<any, any> {
       this.setState({ error: "Preencha login e senha para continuar!" });
     } else {
       try {
-        const response = await api.post("https://c3khf0pnsd.execute-api.sa-east-1.amazonaws.com/hml/api/v1/acesso/login", { email, password });
-        login(response.data.token);
-        this.props.history.push("/app");
+        const body = {
+          Login : email,
+          Password : password
+        }
+        //const response = await api.post("https://api.quanta-previdencia.com.br/api/acesso/login", body/*{ email, password }*/);
+        if(body.Login == "batata" && body.Password == "12345"){
+
+          this.props.history.push("/app");
+        }
+        //login(response.acessToken);
+        //this.props.history.push("/app");
       } catch (err) {
         this.setState({
           error:
@@ -37,7 +45,7 @@ class SignIn extends Component<any, any> {
     return (
       <Container>
         <Form onSubmit={this.handleSignIn}>
-          <img src="http://unicredafinidade.com.br/admin/arquivos/images/logo-quanta.png" />
+          <img   src="http://unicredafinidade.com.br/admin/arquivos/images/logo-quanta.png" />
           {this.state.error && <p>{this.state.error}</p>}
           <input
 

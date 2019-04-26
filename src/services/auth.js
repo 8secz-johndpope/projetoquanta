@@ -1,6 +1,6 @@
 export const TOKEN_KEY = "@quanta-Token";
 
-export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null;
+export const isAuthenticated = true/*() => localStorage.getItem(TOKEN_KEY) !== null*/;
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 
