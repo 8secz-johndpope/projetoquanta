@@ -28,7 +28,7 @@ const options: RedocRawOptions = { nativeScrollbars: false };
 async function init() {
   const spec = await loadAndBundleSpec(specUrl);
   store = new AppStore(spec, specUrl, undefined, options);
-  renderRoot({ store });
+  renderRoot({ store , dev: true});
 }
 
 init();

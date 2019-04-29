@@ -5,6 +5,7 @@ import SignIn from "../SignIn";
 
 import { isAuthenticated } from "../services/auth";
 
+import {Redoc} from "./Redoc/Redoc";
 import {RedocStandalone} from "./RedocStandalone";
 
 
@@ -14,7 +15,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     {...rest}
     render={props =>
       isAuthenticated ? (
-        <Component {...props} />
+        <Component {...props} {...rest} />
       ) : (
         <Redirect to={{ pathname: "/", state: { from: props.location } }} />
       )
@@ -23,10 +24,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 export default class Routes extends React.Component<any,any> {
   render(): React.ReactNode {
+    console.log(this.props);
+
     return  <BrowserRouter>
       <Switch>
         <Route exact path="/" component={SignIn} />
-        <PrivateRoute path="/app" component={ RedocStandalone }  />
+        <PrivateRoute {...this.props} path="/app" component={ this.props.dev ? Redoc : RedocStandalone }  />
         <Route path="*" component={() => <h1>Page not found</h1>} />
       </Switch>
     </BrowserRouter>;

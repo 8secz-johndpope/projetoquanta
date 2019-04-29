@@ -17,6 +17,7 @@ import { StoreProvider } from '../StoreBuilder';
 
 export interface RedocProps {
   store: AppStore;
+  dev?: boolean;
 }
 
 export class Redoc extends React.Component<RedocProps> {
