@@ -61,12 +61,15 @@ export class RedocStandalone extends React.PureComponent<RedocStandaloneProps> {
 
     const normalizedOpts = new RedocNormalizedOptions(options);
 
+
     return (
       <ErrorBoundary>
+
         <StoreBuilder spec={spec} specUrl={specUrl} postmanUrl={postmanUrl} options={options} onLoaded={onLoaded}>
           {({ loading, store }) =>
             !loading ? (
               <Redoc store={store!} />
+
             ) : hideLoading ? null : (
               <Loading color={normalizedOpts.theme.colors.primary.main} />
             )

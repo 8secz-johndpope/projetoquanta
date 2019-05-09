@@ -13,17 +13,20 @@ import { StickyResponsiveSidebar } from '../StickySidebar/StickyResponsiveSideba
 import { ApiContentWrap, BackgroundStub, RedocWrap } from './styled.elements';
 
 import { SearchBox } from '../SearchBox/SearchBox';
-import { StoreProvider } from '../StoreBuilder';
+import {StoreProvider} from "../StoreBuilder";
 
 export interface RedocProps {
   store: AppStore;
   dev?: boolean;
+
 }
 
 export class Redoc extends React.Component<RedocProps> {
   static propTypes = {
     store: PropTypes.instanceOf(AppStore).isRequired,
+
   };
+
 
   componentDidMount() {
     this.props.store.onDidMount();
@@ -35,10 +38,15 @@ export class Redoc extends React.Component<RedocProps> {
 
   render() {
     const {
-      store: { spec, menu, options, search, marker },
+      store: { spec, menu, options  , search, marker },
     } = this.props;
     const store = this.props.store;
+
+
+
+
     return (
+
       <ThemeProvider theme={options.theme}>
         <StoreProvider value={this.props.store}>
           <OptionsProvider value={options}>
@@ -53,11 +61,11 @@ export class Redoc extends React.Component<RedocProps> {
                     onActivate={menu.activateAndScroll}
                   />
                 )) ||
-                  null}
+                null}
                 <SideMenu menu={menu} />
               </StickyResponsiveSidebar>
               <ApiContentWrap className="api-content">
-                <ApiInfo store={store} />
+                <ApiInfo store ={store} />
                 <ContentItems items={menu.items as any} />
               </ApiContentWrap>
               <BackgroundStub />
@@ -65,6 +73,7 @@ export class Redoc extends React.Component<RedocProps> {
           </OptionsProvider>
         </StoreProvider>
       </ThemeProvider>
+
     );
   }
 }

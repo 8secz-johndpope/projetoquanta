@@ -4338,6 +4338,7 @@ paths:
         passthroughBehavior: when_no_match
         httpMethod: GET
         type: http_proxy
+
   /api/v1/beneficio/participante/formaPagamento:
     get:
       summary: GetFormaPagamentoByInscricao

@@ -125,6 +125,8 @@ export class RedocNormalizedOptions {
     this.hideDownloadButton = argValueToBoolean(raw.hideDownloadButton);
     this.disableSearch = argValueToBoolean(raw.disableSearch);
 
+
+
     this.unstable_ignoreMimeParameters = argValueToBoolean(raw.unstable_ignoreMimeParameters);
 
     this.allowedMdComponents = raw.allowedMdComponents || {};
