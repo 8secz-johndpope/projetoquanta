@@ -28,7 +28,9 @@ class SignIn extends Component<any, any> {
         const response = await api.post("https://c3khf0pnsd.execute-api.sa-east-1.amazonaws.com/hml/api/v1/acesso/login", body/*{ email, password }*/);
 
         login(response.acessToken);
+        console.log("foi redirecionado");
         this.props.history.push("/app");
+
       } catch (err) {
         this.setState({
           error:
@@ -39,6 +41,7 @@ class SignIn extends Component<any, any> {
   };
 
   render() {
+    console.log("login rederizado");
     return (
       <Container>
         <Form onSubmit={this.handleSignIn}>

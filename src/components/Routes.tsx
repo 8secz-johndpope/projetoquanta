@@ -37,6 +37,7 @@ export default class Routes extends React.Component<any,any> {
         <Route path="*" component={() => <h1>Page not found</h1>} />
       </Switch>
     </BrowserRouter>;
+
   }
 }
 

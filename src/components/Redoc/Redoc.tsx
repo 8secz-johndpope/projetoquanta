@@ -30,10 +30,12 @@ export class Redoc extends React.Component<RedocProps> {
 
   componentDidMount() {
     this.props.store.onDidMount();
+    console.log("doc renderizada onDidMount");
   }
 
   componentWillUnmount() {
     this.props.store.dispose();
+    console.log("doc renderizada dispose");
   }
 
   render() {
@@ -41,7 +43,7 @@ export class Redoc extends React.Component<RedocProps> {
       store: { spec, menu, options  , search, marker },
     } = this.props;
     const store = this.props.store;
-
+    // console.log("doc renderizada");
 
 
 
@@ -75,5 +77,7 @@ export class Redoc extends React.Component<RedocProps> {
       </ThemeProvider>
 
     );
+
+
   }
 }
