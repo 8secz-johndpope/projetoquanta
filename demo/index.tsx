@@ -44,6 +44,7 @@ class DemoApp extends React.Component<
       specUrl: url,
       dropdownOpen: false,
       cors,
+
     };
   }
 

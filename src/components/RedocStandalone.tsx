@@ -68,7 +68,7 @@ export class RedocStandalone extends React.PureComponent<RedocStandaloneProps> {
         <StoreBuilder spec={spec} specUrl={specUrl} postmanUrl={postmanUrl} options={options} onLoaded={onLoaded}>
           {({ loading, store }) =>
             !loading ? (
-              <Redoc store={store!} />
+              <Redoc store={store!}  />
 
             ) : hideLoading ? null : (
               <Loading color={normalizedOpts.theme.colors.primary.main} />

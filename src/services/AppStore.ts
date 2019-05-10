@@ -67,6 +67,7 @@ export class AppStore {
     postmanUrl?: string,
     options: RedocRawOptions = {},
     createSearchIndex: boolean = true,
+
   ) {
     this.rawOptions = options;
     this.options = new RedocNormalizedOptions(options, DEFAULT_OPTIONS);

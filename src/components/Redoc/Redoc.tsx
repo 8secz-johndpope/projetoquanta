@@ -4,7 +4,7 @@ import * as React from 'react';
 import { ThemeProvider } from '../../styled-components';
 import { OptionsProvider } from '../OptionsProvider';
 
-import { AppStore } from '../../services';
+import {AppStore, RedocNormalizedOptions} from '../../services';
 import { ApiInfo } from '../ApiInfo/';
 import { ApiLogo } from '../ApiLogo/ApiLogo';
 import { ContentItems } from '../ContentItems/ContentItems';
@@ -14,6 +14,8 @@ import { ApiContentWrap, BackgroundStub, RedocWrap } from './styled.elements';
 
 import { SearchBox } from '../SearchBox/SearchBox';
 import {StoreProvider} from "../StoreBuilder";
+import {Loading} from "..";
+
 
 export interface RedocProps {
   store: AppStore;
@@ -22,15 +24,30 @@ export interface RedocProps {
 }
 
 export class Redoc extends React.Component<RedocProps> {
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      loading : true
+    };
+
+  }
+
+
   static propTypes = {
     store: PropTypes.instanceOf(AppStore).isRequired,
 
   };
 
-
   componentDidMount() {
+    console.log(this.state);
+    this.setState({ loading : true });
+
     this.props.store.onDidMount();
+    console.log(this.state);
     console.log("doc renderizada onDidMount");
+
   }
 
   componentWillUnmount() {
@@ -39,23 +56,25 @@ export class Redoc extends React.Component<RedocProps> {
   }
 
   render() {
+
+
     const {
-      store: { spec, menu, options  , search, marker },
+      store: { spec, menu, options={}  , search, marker },
     } = this.props;
+
     const store = this.props.store;
-    // console.log("doc renderizada");
+    const normalizedOpts = new RedocNormalizedOptions(options);
 
 
-
-    return (
-
-      <ThemeProvider theme={options.theme}>
+    let content = !(this.state) ?
+      <Loading color={normalizedOpts.theme.colors.primary.main} />:
+      <ThemeProvider theme={normalizedOpts.theme}>
         <StoreProvider value={this.props.store}>
-          <OptionsProvider value={options}>
+          <OptionsProvider value={normalizedOpts}>
             <RedocWrap className="redoc-wrap">
               <StickyResponsiveSidebar menu={menu} className="menu-content">
                 <ApiLogo info={spec.info} />
-                {(!options.disableSearch && (
+                {(!normalizedOpts.disableSearch && (
                   <SearchBox
                     search={search!}
                     marker={marker}
@@ -76,6 +95,8 @@ export class Redoc extends React.Component<RedocProps> {
         </StoreProvider>
       </ThemeProvider>
 
+    return (
+      <div>{content}</div>
     );
 
 
