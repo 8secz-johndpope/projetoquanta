@@ -1,16 +1,11 @@
-import { observer } from 'mobx-react';
+import {observer} from 'mobx-react';
 import * as React from 'react';
-import { AppStore } from '../../services/AppStore';
-import { MiddlePanel, Row, Section } from '../../common-elements/';
-import { Markdown } from '../Markdown/Markdown';
-import { StyledMarkdownBlock } from '../Markdown/styled.elements';
-import {
-  ApiHeader,
-  DownloadButton,
-  InfoSpan,
-  InfoSpanBox,
-  InfoSpanBoxWrap,
-} from './styled.elements';
+import {AppStore} from '../../services/AppStore';
+import {MiddlePanel, Row, Section} from '../../common-elements/';
+import {Markdown} from '../Markdown/Markdown';
+import {StyledMarkdownBlock} from '../Markdown/styled.elements';
+import {ApiHeader, DownloadButton, InfoSpan, InfoSpanBox, InfoSpanBoxWrap,} from './styled.elements';
+import {logout} from "../../services/auth";
 
 export interface ApiInfoProps {
   store: AppStore;
@@ -100,6 +95,17 @@ export class ApiInfo extends React.Component<ApiInfoProps, Links> {
             </ApiHeader>
             {!hideDownloadButton && (
               <p>
+                Sair da Aplicação:
+                <DownloadButton
+                  href="/"
+                  onClick={e => logout()}
+                >
+                  Log Out
+                </DownloadButton>
+
+                <br/>
+                <br/>
+
                 Fazer download da especificação OpenAPI:
                 <DownloadButton
                   download={downloadSwaggerFilename}

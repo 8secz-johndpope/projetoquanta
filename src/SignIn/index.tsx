@@ -1,11 +1,11 @@
 import * as React from "react";
-import { withRouter } from "react-router-dom";
+import {Component} from "react";
+import {withRouter} from "react-router-dom";
 
 import api from "../services/api";
-import { login } from "../services/auth";
+import {login} from "../services/auth";
 
-import { Form, Container } from "./styles";
-import {Component} from "react";
+import {Container, Form} from "./styles";
 
 class SignIn extends Component<any, any> {
   state = {
@@ -24,12 +24,11 @@ class SignIn extends Component<any, any> {
         const body = {
           Login : email,
           Password : password
-        }
+        };
         const response = await api.post("https://c3khf0pnsd.execute-api.sa-east-1.amazonaws.com/hml/api/v1/acesso/login", body/*{ email, password }*/);
 
-        login(response.acessToken);
-        console.log("foi redirecionado");
-        this.props.history.push("/app");
+        login(response.data.accessToken);
+        this.props.history.push("/redoc");
 
       } catch (err) {
         this.setState({
